@@ -6,42 +6,47 @@ export default function ChooseDateScreen({ navigation, route }) {
   const { result } = route.params;
   const success = result.success;
   const data = result.result;
-  const options = {
-    weekday: 'long',
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  };
   function generateDate(){
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    };
     const result = [];
     for (let i = 0; i < data.length; i++) {
-      const date = data[i].date;
-      const newdate = new Date(date);
-      const isoString = newdate.toISOString();
-      const year = isoString.slice(0, 4);
-      const month = isoString.slice(5, 7);
-      const day = isoString.slice(8, 10);
-
-      const formattedDate = `${year}-${month}-${day}`;
+      const date = new Date(data[i].date);
+      let datInList = date.toLocaleString('en-US', options).split('/');
+      datInList.unshift(datInList.pop());
+      datInList = datInList.join('-');
+      result.push({ date: datInList, count: 1 });
       
-      result.push({ date: formattedDate, count: 1 });
     }
     return result
   }
   
   function today(){
-    const newdate = new Date();
-      const isoString = newdate.toISOString();
-      const year = isoString.slice(0, 4);
-      const month = isoString.slice(5, 7);
-      const day = isoString.slice(8, 10);
-      return `${year}-${month}-${day}`.toString();
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    };
+    const date = new Date();
+    let datInList = date.toLocaleString('en-US', options).split('/');
+    datInList.unshift(datInList.pop());
+    datInList = datInList.join('-');
+    return datInList
   }
   
   function renderItem({ item }) {
+    const options = {
+      weekday: 'long',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    };
     return (
       <TouchableOpacity style={styles.datePickerButton} onPress={() => navigation.navigate('Report', { data: item.data })}>
         <Text style={styles.datePickerButtonText}>{new Date(item.date).toLocaleString('en-US', options)}</Text>
