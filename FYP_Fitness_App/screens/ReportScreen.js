@@ -23,7 +23,7 @@ export default function ReportScreen({ navigation, route }) {
     const output = model.predict(tf.tensor2d([[freq, acc]])).arraySync();
     const label =["You may choose too heavy weight. Reduce the weight.", "Please slow down your motion or add more weight on it", "Good performance. Keep going."]
     const index = output[0].indexOf(Math.max(...output[0]));
-    const data = label[index] + Math.max(...output[0]).toString();
+    const data = label[index] + "  "+ Math.max(...output[0]).toPrecision(3).toString();
     return data
   }
   if (model){

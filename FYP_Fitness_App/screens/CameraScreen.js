@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TensorCamera = cameraWithTensors(Camera);
 const {width, height} = Dimensions.get('window');
-const startArea = 0.08;
+const startArea = 0.1;
 let textureDims;
 if (Platform.OS === 'ios') {
 textureDims = {

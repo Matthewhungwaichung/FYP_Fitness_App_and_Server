@@ -141,6 +141,8 @@ export function drawReadyRange(ctx, height, width, startArea){
   ctx.lineWidth = correctLineWidth;
   ctx.strokeStyle = "White";
   ctx.stroke();
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+  ctx.fillRect(width/2-startArea*width, 0, width*startArea*2, height);
   ctx.setLineDash([]);
 }
 
@@ -153,5 +155,7 @@ export function drawHalfReadyRange(ctx, height, width){
   ctx.lineWidth = correctLineWidth;
   ctx.strokeStyle = "White";
   ctx.stroke();
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+  ctx.fillRect(width/2, 0, width/2, height);
   ctx.setLineDash([]);
 }
