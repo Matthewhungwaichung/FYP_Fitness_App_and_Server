@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Image, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 export default function Login({ navigation }){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
