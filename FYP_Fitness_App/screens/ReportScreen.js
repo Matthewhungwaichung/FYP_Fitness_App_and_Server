@@ -33,7 +33,7 @@ export default function ReportScreen({ navigation, route }) {
           {workoutData.map((item, index) => (
             <View key={index} style={styles.chartContainer}>
               <Text style={styles.index}>Set {index + 1}</Text>
-              <Text style={styles.index2}>Progress: {item.duration} second</Text>
+              <Text style={styles.index2}>Duration: {item.duration} second</Text>
               <Text style={styles.index2}>Number of repetitions: {item.numberOfRep}</Text>
               <LineChart
                 data={{
