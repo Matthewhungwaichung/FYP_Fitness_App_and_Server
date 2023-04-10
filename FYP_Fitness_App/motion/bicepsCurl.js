@@ -30,7 +30,7 @@ export function extractDetails(keypoints, width, startArea){
     const rightBicepLength = calculation.lengthBetweenTwoPoints(rightElbow, rightShoulder);
 
     const noseInArea = nose.x<width/2+startArea*width&&nose.x>width/2-startArea*width;
-    const isReady = noseInArea && leftShoulderAngle<50 && rightShoulderAngle<50;
+    const isReady = noseInArea && leftShoulderAngle<60 && rightShoulderAngle<60;
     if (isReady){
         result.progress = 1-calculation.normalize((leftElbowAngle+rightElbowAngle)/2, intermediateAngle, startAngle);
         result.position = leftElbowAngle<=intermediateAngle && rightElbowAngle<=intermediateAngle? "intermediate": result.position;

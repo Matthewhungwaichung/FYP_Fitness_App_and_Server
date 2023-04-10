@@ -162,17 +162,24 @@ export default function CameraScreen({ route, navigation }) {
         soundPlayElement.isPlaying = true;
       }
       if(result.position ==="start"){
-        if (result.correct){
-          countingElement.lastStart = true;
-        }
+        countingElement.lastStart = true;
+        // if (result.correct){
+        //   countingElement.lastStart = true;
+        // }
       }
       else if(result.position ==="intermediate"){
-        if(countingElement.lastStart && result.correct){
+        if(countingElement.lastStart){
           countingElement.numberOfRepetitionInFunction++;
           setNumberOfRepetition(countingElement.numberOfRepetitionInFunction);
           eachData.numberOfRep = countingElement.numberOfRepetitionInFunction;
           countingElement.lastStart = false;
         }
+        // if(countingElement.lastStart && result.correct){
+        //   countingElement.numberOfRepetitionInFunction++;
+        //   setNumberOfRepetition(countingElement.numberOfRepetitionInFunction);
+        //   eachData.numberOfRep = countingElement.numberOfRepetitionInFunction;
+        //   countingElement.lastStart = false;
+        // }
       }
     }
     
