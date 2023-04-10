@@ -19,8 +19,8 @@ export default function ReportScreen({ navigation, route }) {
       setModel(detector);
     })();
   }, []);
-  function renderResult(freq, acc){
-    const output = model.predict(tf.tensor2d([[freq, acc]])).arraySync();
+  function renderResult(freq, acc, numberOfRep){
+    const output = model.predict(tf.tensor2d([[freq, acc, numberOfRep]])).arraySync();
     const label =["You may choose too heavy weight. Reduce the weight.", "Please slow down your motion or add more weight on it", "Good performance. Keep going."]
     const index = output[0].indexOf(Math.max(...output[0]));
     const data = label[index] + "  "+ Math.max(...output[0]).toPrecision(3).toString();
@@ -86,7 +86,7 @@ export default function ReportScreen({ navigation, route }) {
                   borderRadius: 16,
                 }}
               />
-              <Text style={styles.index2}>Classification: {renderResult(item.numberOfRep/item.duration, item.correctPersentage)}</Text>
+              <Text style={styles.index2}>Classification: {renderResult(item.numberOfRep/item.duration, item.correctPersentage, item.numberOfRep)}</Text>
             </View>
           ))}
         </ScrollView>
